@@ -9,7 +9,7 @@ import './App.css';
 // import videoFile from './photo/MS-SILVER-4.mp4'; // Ensure this file path is correct
 
 // URL вашего видеофайла в облачном хранилище
-const VIDEO_URL = 'https://storage.cloud.google.com/max-kz-1/MS-SILVER-4.mp4';
+const VIDEO_URL = 'https://storage.googleapis.com/max-kz-1/MS-SILVER-4.mp4';
 
 // Определите константы для внешних URL изображений
 const IMAGES = {
