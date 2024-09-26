@@ -1,0 +1,16 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  
+  button {
+    margin: 5px;
+  }
+  
+  #result {
+    white-space: pre-wrap;
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
