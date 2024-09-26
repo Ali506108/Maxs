@@ -1,0 +1,27 @@
+@media (max-width: 768px) {
+    .employee-table td {
+      display: block;
+      width: 100%;
+      text-align: right;
+      padding-left: 50%;
+      position: relative;
+    }
+  
+    .employee-table td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 10px;
+      width: calc(50% - 10px);
+      text-align: left;
+      font-weight: bold;
+    }
+  
+    .employee-table td:first-child {
+      background-color: #f9f9f9;
+    }
+  }
+  
+.modal-backdrop.show{
+  opacity: 0!important;
+}
+
