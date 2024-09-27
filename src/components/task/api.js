@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/task/'; // Проверьте правильность URL
+const API_URL = 'http://185.4.180.127:3000/task/'; // Проверьте правильность URL
 
 const getAuthToken = () => {
   return localStorage.getItem('token');

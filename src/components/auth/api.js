@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api/login/'; // Замените на ваш URL API
+const API_URL = 'http://185.4.180.127:3000/api/login/';  
 
 export const loginAdmin = async (email, password) => {
   try {
