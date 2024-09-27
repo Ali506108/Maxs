@@ -174,7 +174,7 @@ const App = () => {
 
   // Обработка клика по WhatsApp
   const handleWhatsAppClick = () => {
-    const phoneNumber = '770202538773'; // Убрано '+' для ссылки WhatsApp
+    const phoneNumber = '77075006827'; // Убрано '+' для ссылки WhatsApp
     const message = 'Здравствуйте, мне нужна консультация';
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
