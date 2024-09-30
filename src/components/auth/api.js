@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://185.4.180.127:3000/api/login/';  
+const API_URL = 'https://api.maximus.com.kz/api/login/';  
 
 export const loginAdmin = async (email, password) => {
   try {

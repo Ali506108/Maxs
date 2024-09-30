@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://185.4.180.127:3000/clients'; // Проверьте, что этот URL корректен
+const API_URL = 'https://api.maximus.com.kz/clients'; // Проверьте, что этот URL корректен
 
 const getAuthToken = () => {
   return localStorage.getItem('token'); // Замените на ваш метод получения токена
@@ -72,7 +72,7 @@ export const ExcelFetch = async (file) => {
   formData.append('excel', file); // Убедитесь, что имя поля соответствует тому, что ожидается на сервере.
 
   try {
-    const response = await axios.post('http://185.4.180.127:3000/upload', formData, {
+    const response = await axios.post('https://api.maximus.com.kz/upload', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
