@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://185.4.180.127:3000/clients'; // Проверьте, что этот URL корректен
+const API_URL = 'https://185.4.180.127:3000/clients'; // Проверьте, что этот URL корректен
 
 const getAuthToken = () => {
   return localStorage.getItem('token'); // Замените на ваш метод получения токена
