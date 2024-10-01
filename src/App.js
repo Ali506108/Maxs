@@ -417,10 +417,10 @@ const App = () => {
         <div className="content">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Добро пожаловать <code>Maxsimus</code> 8 саун 2 филиала.
+            Добро пожаловать <code>Maxsimus</code> 8 саун комфорт-класса.
           </p>
-          <h1 className="animated-heading">Новая сауна ждёт вас в гости круглосуточно!</h1>
-        </div>
+          <h1 className="animated-heading">Расслабьтесь в нашей роскошной сауне. <br/> Забудьте о стрессах и насладитесь теплом.</h1>
+          </div>
       </header>
 
       {/* Секции сауны */}
