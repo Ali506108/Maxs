@@ -9,31 +9,37 @@ import './App.css';
 // import videoFile from './photo/MS-SILVER-4.mp4'; // Ensure this file path is correct
 
 // URL вашего видеофайла в облачном хранилище
-const VIDEO_URL = 'https://storage.googleapis.com/max-kz-1/MS-SILVER-4.mp4';
+const VIDEO_URL = 'https://storage.googleapis.com/max-kz-1/Untitled%20%E2%80%91%20Made%20with%20FlexClip.mp4';
 
 // Определите константы для внешних URL изображений
 const IMAGES = {
   logo: 'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727258817/MaxSecend/kxy3zqcsgrag5sooeexs.png',
   
   // Silver Images
-  silver1: 'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727258912/MaxSecend/nfippv5uhgbsidwwafmq.jpg',
+  silver1: 'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727763421/Maximus_2.0/cplyaklw523zhbwiosdc.png',
   silver2: 'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727258912/MaxSecend/mf9zh5wbmjbrj4virvtv.jpg',
-  silver3: 'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727258912/MaxSecend/fvbbypit6juq9ig3eodl.jpg',
+  silver3: 'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727692415/Maximus_2.0/cuav8fy6vmht1jhld9pk.jpg',
   silver4: 'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727258912/MaxSecend/oe7cv0jiskqrx5ke0hha.jpg',
   
   // Gold Images
-  gold1: 'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727258785/MaxSecend/sag7vwbbum25gt0vxyv1.jpg',
-  gold2: 'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727258786/MaxSecend/wmnajruibn05ea4qpap4.jpg',
-  gold3: 'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727258786/MaxSecend/bj9ffnpgiyvj6sffuzsf.jpg',
-  
-  dia: 'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727258786/MaxSecend/wy9rr2mragedrxglb0wa.jpg',
-  
+  gold1: 'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727692416/Maximus_2.0/bb9ee5jfesvxfe6ckq9d.jpg',
+  gold2: 'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727258912/MaxSecend/mf9zh5wbmjbrj4virvtv.jpg',
+  gold3: 'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727692416/Maximus_2.0/hf52kx9ngrrihyy6lias.jpg',
+  gold4: 'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727692415/Maximus_2.0/ri86nhs1fzldkuyovpn0.jpg',
+  // https://res.cloudinary.com/da0o3gnfw/image/upload/v1727692415/Maximus_2.0/ri86nhs1fzldkuyovpn0.jpg
+  dia: 'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727764210/Maximus_2.0/sjmnylswwezl91ow9atb.jpg',
+  dia2:'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727692418/Maximus_2.0/s6evxzhzr0gh70wudxow.jpg',
+  dia3:'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727692418/Maximus_2.0/qvlzt6rz3v8aagvhis1n.jpg',
+  dia4:'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727692420/Maximus_2.0/nmamnbk7pfyfbucql4a9.jpg',
   // Standard Images
   st1: 'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727258913/MaxSecend/rsico0x5aqxt8svbwlzu.jpg',
   st2: 'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727258912/MaxSecend/izmqm4i1uyhl0vz4ey3v.jpg',
   st3: 'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727258913/MaxSecend/pmlshp34sezptxgw5man.jpg',
   
-  sap1: 'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727258911/MaxSecend/ijdfmyragxoekyzy06e6.jpg',
+  sap1: 'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727692417/Maximus_2.0/fkpsogavofspf0haazis.jpg',
+  sap2: 'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727692419/Maximus_2.0/sol6mfkaleqijwifaj9n.jpg',
+  sap3:'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727692415/Maximus_2.0/zwqsihos806naxr6rs6n.jpg',
+  sap4:'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727764210/Maximus_2.0/sjmnylswwezl91ow9atb.jpg',
   
   // Lux Images
   lux: 'https://res.cloudinary.com/da0o3gnfw/image/upload/v1727258819/MaxSecend/d4x3n10wcf8jwffe8x1x.jpg',
@@ -61,7 +67,14 @@ const {
   gold1,
   gold2,
   gold3,
+  gold4,
   dia,
+  dia2,
+  dia3,
+  dia4,
+  sap2,
+  sap3,
+  sap4,
   st1,
   st2,
   st3,
@@ -182,7 +195,7 @@ const App = () => {
 
   // Обработка клика по телефону
   const handleClick = () => {
-    const phone = '+770202538773';
+    const phone = '+7 707 500 6827';
     window.location.href = `tel:${phone}`;
     setIsMenuOpen(false);
   };
@@ -206,7 +219,7 @@ const App = () => {
         ],
       },
       {
-        slider: [gold1, gold2, gold3],
+        slider: [gold1, gold2, gold3, gold4],
         img: gold1,
         text: 'Gold 2',
         bText: [
@@ -221,7 +234,7 @@ const App = () => {
         ],
       },
       {
-        slider: [dia, silver4],
+        slider: [dia, dia2, dia3 , dia4],
         img: dia,
         text: 'Diamond 3',
         bText: [
@@ -236,7 +249,7 @@ const App = () => {
         ],
       },
       {
-        slider: [silver1, silver2, silver3],
+        slider: [sap1 , sap2 ,sap3 ,sap4],
         img: sap1,
         text: 'Sapfir 4',
         bText: [
@@ -344,7 +357,7 @@ const App = () => {
         <div className="map-container" ref={section === 'arykova' ? mapContainerRef1 : mapContainerRef2}></div>
         <div className="contact-info">
           <a href="https://wa.me/770202538773" target="_blank" rel="noopener noreferrer" className="phone-number">
-            <h1>+7 702 025 3873</h1>
+            <h1>+7 707 500 6827</h1>
           </a>
           <div className="address">
             {section === 'arykova' && (
@@ -381,7 +394,7 @@ const App = () => {
           <nav className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
             <a href="#section1" onClick={() => handleLinkClick('arykova')}>Филиал Арыкова</a>
             <a href="#section2" onClick={() => handleLinkClick('bestuzheva')}>Филиал Бестужева</a>
-            <a href="http://localhost:8761/lastn" onClick={() => handleLinkClick(null)}>Login</a>
+            <a href="https://maximus.com.kz/" onClick={() => handleLinkClick(null)}>Login</a>
             <a href="#contact" onClick={() => handleClick()}>Связаться</a>
           </nav>
           <div
@@ -450,6 +463,29 @@ const App = () => {
           </div>
         </div>
       </Modal>
+
+
+      <footer className="footer">
+        <div className="footer-content">
+          <div className="footer-logo">
+            <img src={logo} alt="Logo" />
+          </div>
+          <div className="footer-contact">
+            <a href="https://wa.me/770202538773" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-whatsapp"></i> +7 707 500 6827
+            </a>
+            <br />
+            <a href="mailto:info@maximus.com.kz">info@maximus.com.kz</a>
+          </div>
+          <div className="footer-social">
+            {/* Добавьте ссылки на социальные сети, если необходимо */}
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>© {new Date().getFullYear()} Maxsimus. Все права защищены.</p>
+        </div>
+      </footer>
+
     </div>
   );
 };
