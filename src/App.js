@@ -416,8 +416,8 @@ const App = () => {
         </video>
         <div className="content">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Добро пожаловать <code>Maxsimus</code> 8 саун комфорт-класса.
+          <p className="text-heading">
+            Добро пожаловать <code>Maximus</code> 8 саун комфорт-класса.
           </p>
           <h1 className="animated-heading">Расслабьтесь в нашей роскошной сауне. <br/> Забудьте о стрессах и насладитесь теплом.</h1>
           </div>

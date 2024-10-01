@@ -152,7 +152,9 @@ body {
 .App-logo:hover {
   transform: rotate(360deg);
 }
-
+.text-heading {
+  font-size: 25px;
+}
 .animated-heading {
   font-size: 3rem;
   font-weight: bold;
