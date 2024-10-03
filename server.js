@@ -20,6 +20,7 @@ app.use(require('./app/login/routes'))
 app.use(require('./app/client/routes'))
 app.use(require('./app/employee/routes'))
 app.use(require('./app/toDo/routes'))
+// app.use(require('./app/sendMessage/whatsappRoutes'));
 require('./app/sendMessage/cronTasks');
 
 app.listen(3000 , ()=>{

@@ -1,11 +1,14 @@
 const cron = require('node-cron');
 const moment = require('moment-timezone');
-const { sendWhatsAppMessage } = require('./whatsappService');
+const { sendWhatsAppTemplateMessage } = require('./whatsappService');
 const Client = require('../client/Client');
 const { Op } = require('sequelize');
 
+// Хранение отправленных сообщений в памяти
+const sentBirthdayMessages = new Set();
+
 // Ежедневная проверка в 11:52 по времени Алматы
-cron.schedule('34 15 * * *', async () => {
+cron.schedule('8 12 * * *', async () => {
   try {
     const today = moment().tz('Asia/Almaty').startOf('day');
     console.log(`Сегодня: ${today.format('YYYY-MM-DD')}`);
@@ -52,8 +55,12 @@ async function checkBirthday(client, today) {
     const diff = birthdayThisYear.diff(today, 'days');
     console.log(`Разница в днях до дня рождения клиента ${client.name}: ${diff}`);
 
-    if (diff === 5) {
+    // Проверка, не отправлено ли сообщение ранее
+    const clientKey = `${client.phone}_${today.year()}`; // Уникальный ключ для клиента и года
+
+    if (diff === 5 && !sentBirthdayMessages.has(clientKey)) {
       await sendBirthdayGreeting(client);
+      sentBirthdayMessages.add(clientKey); // Добавляем клиента в список отправленных сообщений
     }
   } catch (error) {
     console.error(`Ошибка при проверке дня рождения клиента ${client.name}:`, error);
@@ -63,88 +70,86 @@ async function checkBirthday(client, today) {
 // Функция для отправки поздравления с днем рождения
 async function sendBirthdayGreeting(client) {
   try {
-    const message = `Здравствуйте${client.name ? `, ${client.name}` : ''}! Мы поздравляем Вас с наступающим днем рождения и приглашаем Вас отметить этот праздник в нашей сауне!`;
-    await sendWhatsAppMessage(client.phone, message);
-    console.log(`Message sent to ${client.phone}`);
+    const contentSid = 'HXaadddcd4b23e846e57d6ee76a1779ecb';
+
+    await sendWhatsAppTemplateMessage(client.phone, contentSid , );
+    console.log(`Сообщение отправлено ${client.phone}`);
   } catch (error) {
-    console.error(`Failed to send message to ${client.phone}:`, error);
+    console.error(`Не удалось отправить сообщение ${client.phone}:`, error);
   }
 }
 
-// Функция для отправки поздравлений по праздникам
-async function performScheduledTask(message, pr = 'general') {
+
+
+
+
+
+async function getClients(pr) {
+  const whereCondition = {
+    phone: {
+      [Op.ne]: null,
+      [Op.ne]: ''
+    }
+  };
+
+  if (pr === 'man') {
+    whereCondition.gender = 'муж';
+  } else if (pr === 'woman') {
+    whereCondition.gender = 'жен';
+  }
+
+  return await Client.findAll({ where: whereCondition });
+}
+
+async function performScheduledTask(templateId, pr = 'general') {
   try {
-    let clients;
+    const clients = await getClients(pr);
 
-    if (pr === 'general') {
-      clients = await Client.findAll({
-        where: {
-          phone: {
-            [Op.ne]: null,
-            [Op.ne]: ''
-          }
-        }
-      });
-    } else if (pr === 'man') {
-      clients = await Client.findAll({
-        where: {
-          phone: {
-            [Op.ne]: null,
-            [Op.ne]: ''
-          },
-          gender: 'муж'
-        }
-      });
-    } else if (pr === 'woman') {
-      clients = await Client.findAll({
-        where: {
-          phone: {
-            [Op.ne]: null,
-            [Op.ne]: ''
-          },
-          gender: 'жен'
-        }
-      });
-    }
-
-    for (const client of clients) {
-      await sendHolidayGreeting(client, message);
-    }
+    // Отправка сообщений параллельно
+    await Promise.all(clients.map(client => sendHolidayGreeting(client, templateId)));
   } catch (error) {
     console.error(`Ошибка при выполнении задачи по праздникам:`, error);
   }
 }
 
-// Функция для отправки праздничного поздравления с указанием скидки
-async function sendHolidayGreeting(client, message) {
+async function sendHolidayGreeting(client, templateId) {
   try {
-    const personalizedMessage = `Здравствуйте${client.name ? `, ${client.name}` : ''}! ${message} В честь праздника, мы предоставляем вам скидку 10%!`;
-    await sendWhatsAppMessage(client.phone, personalizedMessage);
-    console.log(`Message sent to ${client.phone}`);
-    
+    // Отправка сообщения, используя только идентификатор шаблона
+    await sendWhatsAppTemplateMessage(client.phone, templateId);
+    console.log(`Сообщение отправлено на ${client.phone}`);
+
     // Задержка перед отправкой следующего сообщения
     await new Promise(resolve => setTimeout(resolve, 3000));
   } catch (error) {
-    console.error(`Failed to send message to ${client.phone}:`, error);
+    console.error(`Не удалось отправить сообщение на ${client.phone}:`, error);
   }
 }
 
 // Расписание задач на праздники
 cron.schedule('0 11 26 12 *', async () => {
-  await performScheduledTask('Поздравляeм с наступающим Новым годом!');
+  await performScheduledTask('HX03e240e83af2500ef19a5d62668296d0'); // ID шаблона для Нового года
 });
 
 cron.schedule('0 11 3 3 *', async () => {
-  await performScheduledTask('Поздравляeм с Международным женским днем!', 'woman');
+  await performScheduledTask('HX136d99b10129d221f216e0cacc879b00', 'woman'); // ID шаблона для 8 марта
 });
 
 cron.schedule('0 11 2 5 *', async () => {
-  await performScheduledTask('Поздравляeм с Днем Защитника Отечества', 'man');
+  await performScheduledTask('HX54aedbfef355dfdb268b2c17bdab08f4', 'man'); // ID шаблона для Дня Защитника Отечества
 });
 
 cron.schedule('0 11 16 3 *', async () => {
-  await performScheduledTask('Поздравляeм с Наурызом!');
+  await performScheduledTask('HXd84d4aeb7db803948f4fbbcfc9c760aa'); // ID шаблона для Наурыза
 });
+
+
+
+
+
+cron.schedule('13 15 3 10 *', async () => {
+  await performScheduledTask('HX03e240e83af2500ef19a5d62668296d0'); // ID шаблона для Нового года
+});
+
 
 
 

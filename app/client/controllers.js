@@ -37,7 +37,7 @@ const createClient = async (req, res) => {
       }
 
     }
-    const client = await Client.create({ name, phone ,  gender : gender.toLowerCase() , birthday , email  });
+    const client = await Client.create({ name, phone ,  gender : gender ? gender.toLowerCase() : null , birthday , email  });
     res.status(201).json(client);
   } catch (error) {
     console.log(error);
