@@ -146,10 +146,6 @@ cron.schedule('0 11 16 3 *', async () => {
 
 
 
-cron.schedule('13 15 3 10 *', async () => {
-  await performScheduledTask('HX03e240e83af2500ef19a5d62668296d0'); // ID шаблона для Нового года
-});
-
 
 
 
