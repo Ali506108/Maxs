@@ -3,8 +3,9 @@ const { body } = require('express-validator');
 const twilio = require('twilio');
 require('dotenv').config();
 
-const accountSid =  'AC75368e6d4fdcb5acae5da692b27e1bf8'; 
-const authToken =  '8c8bcdad29f2f86efa4883b2bf00396a'; 
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+
 const client = new twilio(accountSid, authToken);
 
 async function sendWhatsAppTemplateMessage(phone, 
