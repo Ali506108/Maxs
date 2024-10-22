@@ -16,9 +16,7 @@ const ClientForm = ({ initialValues, onAddClient, closeForm }) => {
     const phonePattern = /^\+7\d{10}$/; // Для формата +7XXXXXXXXXX
     const datePattern = /^\d{4}\.\d{2}\.\d{2}$/; // Для формата ГГГГ.ММ.ДД
 
-    if (!client.email) {
-      newErrors.email = 'Email обязателен';
-    } else if (!/\S+@\S+\.\S+/.test(client.email)) {
+    if (client.email && !/\S+@\S+\.\S+/.test(client.email)) {
       newErrors.email = 'Некорректный email';
     }
 
@@ -28,9 +26,7 @@ const ClientForm = ({ initialValues, onAddClient, closeForm }) => {
       newErrors.phone = 'Телефон должен начинаться с +7 и содержать 10 цифр';
     }
 
-    if (!client.birthday) {
-      newErrors.birthday = 'Дата рождения обязательна';
-    } else if (!datePattern.test(client.birthday)) {
+    if (client.birthday && !datePattern.test(client.birthday)) {
       newErrors.birthday = 'Некорректный формат даты (ГГГГ.ММ.ДД)';
     }
 
@@ -59,7 +55,6 @@ const ClientForm = ({ initialValues, onAddClient, closeForm }) => {
               name="name"
               value={client.name || ''}
               onChange={handleChange}
-              required
             />
           </Form.Group>
           <Form.Group controlId="email">
@@ -69,7 +64,6 @@ const ClientForm = ({ initialValues, onAddClient, closeForm }) => {
               name="email"
               value={client.email || ''}
               onChange={handleChange}
-              required
               isInvalid={!!errors.email}
             />
             <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
@@ -82,7 +76,6 @@ const ClientForm = ({ initialValues, onAddClient, closeForm }) => {
               value={client.phone || ''}
               onChange={handleChange}
               placeholder="+7XXXXXXXXXX"
-              required
               isInvalid={!!errors.phone}
             />
             <Form.Control.Feedback type="invalid">{errors.phone}</Form.Control.Feedback>
@@ -94,7 +87,6 @@ const ClientForm = ({ initialValues, onAddClient, closeForm }) => {
               name="gender"
               value={client.gender || ''}
               onChange={handleChange}
-              required
             >
               <option value="">Выберите пол</option>
               <option value="муж">Мужской</option>
@@ -109,7 +101,6 @@ const ClientForm = ({ initialValues, onAddClient, closeForm }) => {
               value={client.birthday || ''}
               onChange={handleChange}
               placeholder="ГГГГ.ММ.ДД"
-              required
               isInvalid={!!errors.birthday}
             />
             <Form.Control.Feedback type="invalid">{errors.birthday}</Form.Control.Feedback>
